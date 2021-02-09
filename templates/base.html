@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="US-en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do Flask App</title>
+</head>
+<header>
+    {% block header %}
+    <h1>To-Do</h1>
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a>
+    </nav>
+    {% endblock %}
+</header>
+<body>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
