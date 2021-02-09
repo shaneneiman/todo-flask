@@ -9,6 +9,8 @@ Flask-SQLAlchemy = "==2.2"
 flask-user = "*"
 mysql-connector-python = "*"
 python-dotenv = "*"
+email-validator = "*"
+flask-babel = "*"
 
 [dev-packages]
 
