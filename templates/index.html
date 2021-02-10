@@ -8,9 +8,9 @@
             <form class="form-style" action="/" method="POST">
                 <p>
                     <label for="todo_input">To-Do</label>
-                    <input type="text" name="todo_input" id="todo_input">
+                    <input type="text" name="todo_input" id="todo_input" required>
                     <label for="due_date">Due Date</label>
-                    <input type="date" name="due_date" id="due_date">
+                    <input type="date" name="due_date" id="due_date" value="yyyy-mm-dd" required pattern="\d{4}-\d{2}-\d{2}">
                 </p>
                 <div><button type="submit" id="add-todo-button" class="btn btn-primary">Create</button></div>
             </form>
@@ -28,7 +28,7 @@
           {% for todo in todos %}  
           <tr>
             <th scope="row">{{ todo.text }}<br>
-                Due: {{ todo.date_created.date() }}
+                Due: {{ todo.due_date }}
             </th>
             <td>
                 <a href="/{{todo.id}}/complete/" class="link">&#9989;</a>
