@@ -1,15 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% for todo in todos %}
-    <p>
-        <div>{{ todo.text }}</div>
-        <div>{{ todo.date_created.date() }}</div>
-        <div>{{ todo.user.username}}</div>
-        <div>
-            <a href="/{{todo.id}}/delete/">Delete</a>
-            <a href="/{{todo.id}}/complete/">Mark Incomplete</a>
-        </div>
-    </p>
-{% endfor %}
+<h1 class="center-form">Completed To-Dos</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">To-Do</th>
+        <th scope="col">Update Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for todo in todos %}  
+      <tr>
+        <th scope="row">{{ todo.text }}<br>
+            Due: {{ todo.date_created.date() }}
+        </th>
+        <td>
+            <a href="/{{todo.id}}/complete/" class="link">&#9989;</a>
+            <a href="/{{todo.id}}/update/" class="link">&#128394;</a>
+            <a href="/{{todo.id}}/delete/" class="link">&#128465;&#65039;</a>
+        </td>  
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}

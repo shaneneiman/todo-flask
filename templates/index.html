@@ -2,23 +2,43 @@
 
 {% block content %}
 {% if current_user.is_authenticated %}
-    <form action="/" method="POST">
-        <input type="text" name="todo_input" id="todo_input">
-        <button type="submit" id="add-todo-button">Add To-Do</button>
-    </form>
-
-    {% for todo in todos %}
-    <p>
-        <div>{{ todo.text }}</div>
-        <div>{{ todo.date_created.date() }}</div>
-        <div>{{ todo.user.username}}</div>
-        <div>
-            <a href="/{{todo.id}}/delete/">Delete</a>
-            <a href="/{{todo.id}}/update/">Update</a>
-            <a href="/{{todo.id}}/complete/"> Mark Completed</a>
+    <div class="center-form">
+        <button id="button" class="btn btn-primary">Add a To-do</button>
+        <div id="form" class="hidden">
+            <form class="form-style" action="/" method="POST">
+                <p>
+                    <label for="todo_input">To-Do</label>
+                    <input type="text" name="todo_input" id="todo_input">
+                    <label for="due_date">Due Date</label>
+                    <input type="date" name="due_date" id="due_date">
+                </p>
+                <div><button type="submit" id="add-todo-button" class="btn btn-primary">Create</button></div>
+            </form>
         </div>
-    </p>
-    {% endfor %}
+    </div><br><br>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">To-Do</th>
+            <th scope="col">Update Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for todo in todos %}  
+          <tr>
+            <th scope="row">{{ todo.text }}<br>
+                Due: {{ todo.date_created.date() }}
+            </th>
+            <td>
+                <a href="/{{todo.id}}/complete/" class="link">&#9989;</a>
+                <a href="/{{todo.id}}/update/" class="link">&#128394;</a>
+                <a href="/{{todo.id}}/delete/" class="link">&#128465;&#65039;</a>
+            </td>  
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
 {% else %}
     <h4>Sign up to make some to-dos!</h4>
 {% endif %}
