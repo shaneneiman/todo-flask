@@ -1,5 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h4>homepage</h4>
+{% if current_user.is_authenticated %}
+    <form action="/" method="POST">
+        <input type="text" name="todo_input" id="todo_input">
+        <button type="submit" id="add-todo-button">Add To-Do</button>
+    </form>
+
+    {% for todo in todos %}
+    <p>
+        <div>{{ todo.text }}</div>
+        <div>{{ todo.date_created.date() }}</div>
+        <div>{{ todo.user.username}}</div>
+    </p>
+    {% endfor %}
+{% else %}
+    <h4>Sign up to make some to-dos!</h4>
+{% endif %}
 {% endblock %}
