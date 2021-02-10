@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    border: 0;
+    font-family: arial;
+}
+
+header {
+    color: rgb(255, 255, 255);
+    padding: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.form-style {
+    font-family: inherit;
+    color: rgba(0, 0, 0, .8);
+    padding: 10px;
+}
+
+.form-style label {
+    font-size: .875rem;
+    font-weight: bold;
+    margin-bottom: .5rem;  
+    display: block;  
+}
+
+.form-style input[type=text], .form-style input[type=search] input[type=file] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, .2);
+    padding: .5rem;
+    margin-bottom: .5rem;
+    
+}
+
+.center-form {
+    text-align: center;
+}

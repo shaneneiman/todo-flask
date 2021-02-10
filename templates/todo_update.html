@@ -1,9 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Update To-Do</h2>
-<form action="/{{todo.id}}/update/" method="POST">
-    <input type="text" name="todo_input" id="todo_input" value="{{ todo.text }}">
-    <button type="submit" id="add-todo-button">Add To-Do</button>
-</form>
+<div class="center-form">
+    <h2>Update To-Do</h2>
+    <form class="form-style" action="/{{todo.id}}/update/" method="POST">
+        <p>
+            <label for="todo_input">To-Do</label>
+            <input type="text" name="todo_input" id="todo_input" value="{{ todo.text }}">
+            <label for="due_date">Due Date</label>
+            <input type="date" name="due_date" id="due_date">
+        </p>
+        <div><button type="submit" id="add-todo-button" class="btn btn-primary">Update</button></div>
+    </form>
+</div>
 {% endblock %}
