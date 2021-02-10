@@ -27,6 +27,7 @@ class Todo(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(300), nullable=False)
+    due_date = db.Column(db.Date, nullable=True)
     completed = db.Column(db.Boolean, nullable=False, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users_table.id"), nullable=False)
     user = db.relationship("User", back_populates="todos")

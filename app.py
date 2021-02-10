@@ -43,7 +43,8 @@ user_manager = UserManager(app, db, User)
 def index():
     if request.method == "POST":
         todo_input = request.form["todo_input"]
-        todo = Todo(text=todo_input, user=current_user)
+        due_date = request.form["due_date"]
+        todo = Todo(text=todo_input, user=current_user, due_date=due_date)
 
         try:
             db.session.add(todo)
@@ -76,6 +77,7 @@ def todo_update(todo_pk):
 
     if request.method == "POST":
         todo.text = request.form["todo_input"]
+        todo.due_date = request.form["due_date"]
 
         try:
             db.session.commit()

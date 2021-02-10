@@ -13,7 +13,7 @@
       {% for todo in todos %}  
       <tr>
         <th scope="row">{{ todo.text }}<br>
-            Due: {{ todo.date_created.date() }}
+            Due: {{ todo.due_date }}
         </th>
         <td>
             <a href="/{{todo.id}}/complete/" class="link">&#9989;</a>
