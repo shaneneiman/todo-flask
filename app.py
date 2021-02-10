@@ -53,10 +53,60 @@ def index():
             return "There was an issue adding the task"
 
     else:
-        todos = Todo.query.order_by(Todo.date_created).all()
+        user = current_user
+        todos = None
+        if user.is_authenticated:
+            todos = Todo.query.filter(Todo.user == user, Todo.completed == False).all()
         return render_template("index.html", todos=todos)
 
+@app.route("/<int:todo_pk>/delete/")
+def todo_delete(todo_pk):
+    todo = Todo.query.get_or_404(todo_pk)
 
+    try:
+        db.session.delete(todo)
+        db.session.commit()
+        return redirect("/")
+    except:
+        return "There was a problem deleting the todo"
+
+@app.route("/<int:todo_pk>/update/", methods=["POST", "GET"])
+def todo_update(todo_pk):
+    todo = Todo.query.get_or_404(todo_pk)
+
+    if request.method == "POST":
+        todo.text = request.form["todo_input"]
+
+        try:
+            db.session.commit()
+            return redirect("/")
+        except:
+            "There was a problem updating the todo"
+
+    else:
+        return render_template("todo_update.html", todo=todo)
+
+@app.route("/<int:todo_pk>/complete/")
+def todo_mark_completed(todo_pk):
+    todo = Todo.query.get_or_404(todo_pk)
+
+    if todo.completed == False:
+        todo.completed = True
+    else:
+        todo.completed = False
+    
+    try:
+        db.session.commit()
+        return redirect("/")
+    except:
+        return "There was a problem updating the todo"
+
+@app.route("/todos/completed/", methods=["GET"])
+def todos_completed():
+    user = current_user
+    if user.is_authenticated:
+        todos = Todo.query.filter(Todo.user == user, Todo.completed == True).all()
+    return render_template("todos_completed.html", todos=todos)
 
 if __name__ == "__main__":
     app.run(port=3000)

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for todo in todos %}
+    <p>
+        <div>{{ todo.text }}</div>
+        <div>{{ todo.date_created.date() }}</div>
+        <div>{{ todo.user.username}}</div>
+        <div>
+            <a href="/{{todo.id}}/delete/">Delete</a>
+            <a href="/{{todo.id}}/complete/">Mark Incomplete</a>
+        </div>
+    </p>
+{% endfor %}
+{% endblock %}

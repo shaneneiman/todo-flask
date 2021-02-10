@@ -12,6 +12,11 @@
         <div>{{ todo.text }}</div>
         <div>{{ todo.date_created.date() }}</div>
         <div>{{ todo.user.username}}</div>
+        <div>
+            <a href="/{{todo.id}}/delete/">Delete</a>
+            <a href="/{{todo.id}}/update/">Update</a>
+            <a href="/{{todo.id}}/complete/"> Mark Completed</a>
+        </div>
     </p>
     {% endfor %}
 {% else %}
