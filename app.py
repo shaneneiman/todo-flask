@@ -1,6 +1,7 @@
 from flask import Flask, redirect, url_for, render_template, request
-from models import db, User
+from models import db, User, Todo
 from flask_user import login_required, UserManager
+from flask_login import current_user
 
 import os
 
@@ -38,12 +39,22 @@ db.create_all()
 # Setup Flask-User and specify User data-model
 user_manager = UserManager(app, db, User)
 
-@app.route("/")
+@app.route("/", methods=["POST", "GET"])
 def index():
-    '''
-    Home page
-    '''
-    return render_template("index.html")
+    if request.method == "POST":
+        todo_input = request.form["todo_input"]
+        todo = Todo(text=todo_input, user=current_user)
+
+        try:
+            db.session.add(todo)
+            db.session.commit()
+            return redirect("/")
+        except:
+            return "There was an issue adding the task"
+
+    else:
+        todos = Todo.query.order_by(Todo.date_created).all()
+        return render_template("index.html", todos=todos)
 
 
 
