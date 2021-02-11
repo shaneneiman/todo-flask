@@ -12,6 +12,7 @@ python-dotenv = "*"
 email-validator = "*"
 flask-babel = "*"
 gunicorn = "*"
+cryptography = "*"
 
 [dev-packages]
 
