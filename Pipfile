@@ -10,7 +10,6 @@ flask-user = "*"
 mysql-connector-python = "*"
 python-dotenv = "*"
 email-validator = "*"
-flask-babel = "*"
 gunicorn = "*"
 cryptography = "*"
 
