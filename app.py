@@ -1,6 +1,6 @@
 from flask import Flask, redirect, url_for, render_template, request
 from sqlalchemy.pool import QueuePool
-from sqlalchemy.pool.Pool import creator
+from sqlalchemy.pool.pool import creator
 from models import db, User, Todo
 from flask_user import login_required, UserManager
 from flask_login import current_user
