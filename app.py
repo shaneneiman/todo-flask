@@ -1,4 +1,5 @@
 from flask import Flask, redirect, url_for, render_template, request
+from sqlalchemy.pool import QueuePool
 from models import db, User, Todo
 from flask_user import login_required, UserManager
 from flask_login import current_user
@@ -13,7 +14,7 @@ app.config['DEBUG'] = os.environ.get("DEBUG")
 # Database
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {"pool_pre_ping":True}
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {"pool_size": 10, "poolclass": QueuePool, "pool_pre_ping": True}
 app.config['DEBUG'] = os.environ.get("DEBUG")
 app.config['MAIL_DEBUG'] = 0
 db.init_app(app)
