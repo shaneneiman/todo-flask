@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.pool import QueuePool
 from sqlalchemy.sql import func
 from flask_user import UserMixin
 
@@ -8,7 +9,7 @@ import os
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+db = SQLAlchemy(app, engine_options={"pool_size": 10, "poolclass":QueuePool, "pool_pre_ping":True})
 
 class User(db.Model, UserMixin):
     __tablename__ = "users_table"
