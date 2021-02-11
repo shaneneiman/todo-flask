@@ -11,6 +11,7 @@ mysql-connector-python = "*"
 python-dotenv = "*"
 email-validator = "*"
 flask-babel = "*"
+gunicorn = "*"
 
 [dev-packages]
 
