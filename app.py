@@ -15,9 +15,6 @@ app.config['DEBUG'] = os.environ.get("DEBUG")
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
-    'pool': QueuePool._creator,
-    'pool_size': 10,
-    'pool_recycle': 120,
     'pool_pre_ping': True
 }
 app.config['DEBUG'] = os.environ.get("DEBUG")
