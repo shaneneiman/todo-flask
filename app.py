@@ -14,7 +14,7 @@ app.config['DEBUG'] = os.environ.get("DEBUG")
 # Database
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_POOL_RECYCLE'] = 1
+app.config['SQLALCHEMY_POOL_RECYCLE'] = 100
 app.config['DEBUG'] = os.environ.get("DEBUG")
 app.config['MAIL_DEBUG'] = 0
 db.init_app(app)
@@ -113,4 +113,4 @@ def todos_completed():
     return render_template("todos_completed.html", todos=todos)
 
 if __name__ == "__main__":
-    app.run(port=3000)
+    app.run(port=3000, debug=True)

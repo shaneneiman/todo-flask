@@ -31,7 +31,7 @@ SQLAlchemy = "*"
 Werkzeug = "*"
 WTForms = "*"
 awsebcli = "*"
-gunicorn = "*"
+pymysql = "*"
 
 [dev-packages]
 
