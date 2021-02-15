@@ -29,7 +29,6 @@ MarkupSafe = "*"
 SQLAlchemy = "*"
 Werkzeug = "*"
 WTForms = "*"
-awsebcli = "*"
 pymysql = "*"
 gunicorn = "*"
 
