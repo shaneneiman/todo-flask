@@ -31,6 +31,7 @@ Werkzeug = "*"
 WTForms = "*"
 awsebcli = "*"
 pymysql = "*"
+gunicorn = "*"
 
 [dev-packages]
 
